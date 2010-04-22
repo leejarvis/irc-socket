@@ -121,31 +121,38 @@ class IRCSocket
     args.last.insert(0, ':') unless args.last.nil?
     args.join(' ').strip
   end
-  private :raw
 
-  # Send the PASS command
+  # More sugar
+  def write_optional(command, *optional) # :nodoc:
+    command = "#{command} #{optional.join(' ')}" if optional
+    write(command.strip)
+  end
+  private :raw, :write_optional
+
+  # Send PASS command
   def pass(password)
     write("PASS #{password}")
   end
 
-  # Send the NICK command
+  # Send NICK command
   def nick(nickname)
     write("NICK #{nickname}")
   end
 
-  # Send the USER command - 
+  # Send USER command - 
   def user(user, mode, unused, realname)
     write("USER #{user} #{mode} #{unused} :#{realname}")
   end
 
-  # Send the OPER command
+  # Send OPER command
   def oper(name, password)
     write("OPER #{name} #{password}")
   end
 
-  # Send the MODE command
-  def mode()
-
+  # Send the MODE command.
+  # Should probably implement a better way of doing this
+  def mode(channel, *modes)
+    write("MODE #{channel} #{modes.join(' ')}")
   end
 
   # Send QUIT command
@@ -198,6 +205,80 @@ class IRCSocket
     write("NOTICE #{target} :#{message}")
   end
 
+  # Send MOTD
+  def motd(target=nil)
+    write_optional("MOTD", target)
+  end
+
+  # Send VERSION
+  def version(target=nil)
+    write_optional("VERSION", target)
+  end
+
+  # Send STATS
+  def stats(*params)
+    write_optional("STATS", params)
+  end
+
+  # Send TIME
+  def time(target=nil)
+    write_optional("TIME", target)
+  end
+
+  # Send INFO
+  def info(target=nil)
+    write_optional("INFO", target)
+  end
+
+  # Send SQUERY
+  def squery(target, message)
+    write("SQUERY #{target} :#{message}")
+  end
+
+  # Send WHO
+  def who(*params)
+    write_optional("WHO", params)
+  end
+
+  # Send WHOIS
+  def whois(*params)
+    write_optional("WHOIS", params)
+  end
+
+  # Send WHOWAS
+  def whowas(*params)
+    write_optional("WHOWAS", params)
+  end
+
+  # Send KILL
+  def kill(user, message)
+    write("KILL #{user} :#{message}")
+  end
+
+  # Send PING
+  def ping(server)
+    write("PING #{server}")
+  end
+
+  # Send PONG
+  def pong(server)
+    write("PONG #{server}")
+  end
+
+  # Send AWAY
+  def away(message=nil)
+    raw("AWAY", message)
+  end
+
+  # Send USERS
+  def users(target=nil)
+    write_optional("USERS", target)
+  end
+
+  # Send USERHOST
+  def userhost(*users)
+    write("USERHOST #{users.join(' ')}")
+  end
 
   # Close our socket instance
   def close

@@ -11,7 +11,7 @@ commands = [
   [:nick,    %(ipsum),                          "NICK ipsum"],
   [:user,    ["guest", 0, '*', "real name"],    "USER guest 0 * :real name"],
   [:oper,    %w(foo bar),                       "OPER foo bar"],
-  
+  [:mode,    %w(#foo +v bar),                   "MODE #foo +v bar"],
   [:quit,    %w(goodbye),                       "QUIT :goodbye"],
   [:join,    %w(#mychan),                       "JOIN #mychan"],
   [:part,    %w(#mychan),                       "PART #mychan"],
@@ -24,6 +24,22 @@ commands = [
   [:kick,    %w(#chan villian gtfo!),           "KICK #chan villian :gtfo!",    "with kick reason"],
   [:privmsg, ['#chan', 'foo bar baz'],          "PRIVMSG #chan :foo bar baz"],
   [:notice,  ['#chan', 'foo bar baz'],          "NOTICE #chan :foo bar baz"],
+  [:motd,    %w(someserver),                    "MOTD someserver"],
+  [:version, %w(anotherserver),                 "VERSION anotherserver"],
+  [:stats,   %w(m server),                      "STATS m server"],
+  [:time,    %w(irc.someserver.net),            "TIME irc.someserver.net"],
+  [:info,    %w(foobar),                        "INFO foobar"],
+  [:squery,  %w(irchelp HELPME),                "SQUERY irchelp :HELPME"],
+  [:who,     %w(*.com o),                       "WHO *.com o"],
+  [:whois,   %w(foo.org user),                  "WHOIS foo.org user"],
+  [:whowas,  %w(foo.org user),                  "WHOWAS foo.org user"],
+  [:kill,    ['badperson', 'get out!'],         "KILL badperson :get out!"],
+  [:ping,    %w(010123444),                     "PING 010123444"],
+  [:pong,    %w(irc.foobar.org),                "PONG irc.foobar.org"],
+  [:away,    [],                                "AWAY"],
+  [:away,    ['gone for lunch'],              "AWAY :gone for lunch"],
+  [:users,   %w(irc.foobar.org),                "USERS irc.foobar.org"],
+  [:userhost, %w(foo bar baz),                  "USERHOST foo bar baz"],
 ]
 
 describe "IRCSocket" do

@@ -5,7 +5,7 @@ require "spec/rake/spectask"
 require "rake/rdoctask"
 
 NAME = 'irc-socket'
-VERSION = '1.0'
+VERSION = '0.9'
 CLEAN.include ["*.gem", "rdoc"]
 
 RDOC_OPTS = [
