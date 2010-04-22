@@ -1,0 +1,32 @@
+== Description
+
+IRCSocket is an IRC wrapper around a TCPSocket. It implements all of the major 
+commands laid out in {RFC 2812}[http://irchelp.org/irchelp/rfc/rfc2812.txt].
+All these commands are available as instance methods of an IRCSocket Object.
+
+== Example
+ irc = IRCSocket.new('irc.freenode.org')
+ irc.connect
+
+ if irc.connected?
+   irc.nick "HulkHogan"
+   irc.user "Hulk", 0, "*", "I am Hulk Hogan"
+
+   while line = irc.read
+        
+     # Join a channel after MOTD
+     if line.split[1] == '376'
+       irc.join "#mychannel"
+     end
+
+     puts "Received: #{line}"
+   end
+ end
+
+=== Block Form
+ IRCSocket.new('irc.freenode.org') do |irc|
+   irc.nick "SpongeBob"
+   irc.user "Spongey", 0, "*", "Square Pants"
+
+   puts irc.read
+ end
