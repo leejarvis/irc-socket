@@ -4,6 +4,11 @@ class IRCSocket
   def write(data)
     return data
   end
+  
+  def read(chompstr="\r\n")
+    str = "foo bar baz\r\n"
+    str.chomp!(chompstr) if chompstr
+  end
 end
 
 commands = [
@@ -63,7 +68,13 @@ describe "IRCSocket" do
     it "should set socket instance as nil" do
       @irc.socket.should == nil
     end
+  end
 
+  describe "#read" do
+    it "should chomp CRLF by default" do
+      @irc.read.should == "foo bar baz"
+      @irc.read.should_not == "foo bar baz\r\n"
+    end
   end
 
   describe "IRC commands as per rfc2812" do

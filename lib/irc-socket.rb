@@ -100,7 +100,7 @@ class IRCSocket
   # the line will have the CRLF chomp'ed. Returns nil if no data could be read
   def read(chompstr="\r\n")
     if data = @socket.gets("\r\n")
-      data.chomp(chompstr) if chompstr
+      data.chomp!(chompstr) if chompstr
       data
     else
       nil
