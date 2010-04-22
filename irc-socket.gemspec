@@ -1,6 +1,6 @@
 spec = Gem::Specification.new do |s|
   s.name = 'irc-socket'
-  s.version = '0.9'
+  s.version = '0.9.1'
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = true
   s.extra_rdoc_files = ["README.rdoc"]
@@ -14,6 +14,5 @@ spec = Gem::Specification.new do |s|
   s.files = %w(README.rdoc Rakefile) + Dir["{spec,lib}/*"]
   s.require_path = "lib"
   
-  s.add_development_dependency('bacon', '= 1.1.0')
   s.add_development_dependency('rspec', '= 1.3.0')
 end
