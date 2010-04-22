@@ -139,7 +139,7 @@ class IRCSocket
     write("NICK #{nickname}")
   end
 
-  # Send USER command - 
+  # Send USER command 
   def user(user, mode, unused, realname)
     write("USER #{user} #{mode} #{unused} :#{realname}")
   end
@@ -165,7 +165,7 @@ class IRCSocket
     write("JOIN #{channel}")
   end
 
-  # Send PART command - 
+  # Send PART command
   def part(channel, message=nil)
     raw("PART", channel, message)
   end
@@ -185,97 +185,97 @@ class IRCSocket
     write("LIST #{channels.join(',') unless channels.empty?}")
   end
 
-  # Send INVITE
+  # Send INVITE command
   def invite(nickname, channel)
     write("INVITE #{nickname} #{channel}")
   end
 
-  # Send KICK
+  # Send KICK command
   def kick(channel, user, comment=nil)
     raw("KICK", channel, user, comment)
   end
 
-  # Send PRIVMSG
+  # Send PRIVMSG command
   def privmsg(target, message)
     write("PRIVMSG #{target} :#{message}")
   end
 
-  # Send NOTICE
+  # Send NOTICE command
   def notice(target, message)
     write("NOTICE #{target} :#{message}")
   end
 
-  # Send MOTD
+  # Send MOTD command
   def motd(target=nil)
     write_optional("MOTD", target)
   end
 
-  # Send VERSION
+  # Send VERSION command
   def version(target=nil)
     write_optional("VERSION", target)
   end
 
-  # Send STATS
+  # Send STATS command
   def stats(*params)
     write_optional("STATS", params)
   end
 
-  # Send TIME
+  # Send TIME command
   def time(target=nil)
     write_optional("TIME", target)
   end
 
-  # Send INFO
+  # Send INFO command
   def info(target=nil)
     write_optional("INFO", target)
   end
 
-  # Send SQUERY
+  # Send SQUERY command
   def squery(target, message)
     write("SQUERY #{target} :#{message}")
   end
 
-  # Send WHO
+  # Send WHO command
   def who(*params)
     write_optional("WHO", params)
   end
 
-  # Send WHOIS
+  # Send WHOIS command
   def whois(*params)
     write_optional("WHOIS", params)
   end
 
-  # Send WHOWAS
+  # Send WHOWAS command
   def whowas(*params)
     write_optional("WHOWAS", params)
   end
 
-  # Send KILL
+  # Send KILL command
   def kill(user, message)
     write("KILL #{user} :#{message}")
   end
 
-  # Send PING
+  # Send PING command
   def ping(server)
     write("PING #{server}")
   end
 
-  # Send PONG
+  # Send PONG command
   def pong(server)
     write("PONG #{server}")
   end
 
-  # Send AWAY
+  # Send AWAY command
   def away(message=nil)
     raw("AWAY", message)
   end
 
-  # Send USERS
+  # Send USERS command
   def users(target=nil)
     write_optional("USERS", target)
   end
 
-  # Send USERHOST
+  # Send USERHOST command
   def userhost(*users)
     write("USERHOST #{users.join(' ')}")
   end
