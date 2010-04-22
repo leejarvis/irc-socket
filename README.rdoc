@@ -4,6 +4,8 @@ IRCSocket is an IRC wrapper around a TCPSocket. It implements all of the major
 commands laid out in {RFC 2812}[http://irchelp.org/irchelp/rfc/rfc2812.txt].
 All these commands are available as instance methods of an IRCSocket Object.
 
+API documentation is available {here}[http://rdoc.injekt.net/irc-socket]
+
 == Example
  irc = IRCSocket.new('irc.freenode.org')
  irc.connect
@@ -23,10 +25,15 @@ All these commands are available as instance methods of an IRCSocket Object.
    end
  end
 
-=== Block Form
- IRCSocket.new('irc.freenode.org') do |irc|
-   irc.nick "SpongeBob"
-   irc.user "Spongey", 0, "*", "Square Pants"
+== Installation
+ gem install irc-socket
 
-   puts irc.read
- end
+Or alternatively you can clone the Github repository
+ git clone https://github.com/injekt/irc-socket
+
+
+== Author
+* Lee Jarvis - ljjarvis@gmail.com
+
+== Notes
+I may have missed something in the RFC. Patches welcome.  
