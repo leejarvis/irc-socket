@@ -3,9 +3,7 @@ require 'socket'
 # == Author
 # * Lee Jarvis - ljjarvis@gmail.com
 #
-#
 # == Description
-#
 # IRCSocket is an IRC wrapper around a TCPSocket. It implements all of the major 
 # commands laid out in {RFC 2812}[http://irchelp.org/irchelp/rfc/rfc2812.txt].
 # All these commands are available as instance methods of an IRCSocket Object.
@@ -63,6 +61,7 @@ class IRCSocket
   
   # Create a new IRCSocket to connect to +server+ on +port+. Defaults to port 6667.
   # If an optional code block is given, it will be passed an instance of the IRCSocket.
+  #
   # NOTE: Using the block form does not mean the socket will send the applicable QUIT
   # command to leave the IRC server. You must send this yourself.
   def initialize(server, port=6667)
@@ -120,6 +119,7 @@ class IRCSocket
   def raw(*args) # :nodoc:
     args.last.insert(0, ':') unless args.last.nil?
     args.join(' ').strip
+    write args
   end
 
   # More sugar
@@ -284,7 +284,5 @@ class IRCSocket
   def close
     @socket.close if connected?
   end
-
 end
-
 
