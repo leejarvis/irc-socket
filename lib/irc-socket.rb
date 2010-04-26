@@ -118,8 +118,7 @@ class IRCSocket
   # Sugar for #write
   def raw(*args) # :nodoc:
     args.last.insert(0, ':') unless args.last.nil?
-    args.join(' ').strip
-    write args
+    write args.join(' ').strip
   end
 
   # More sugar
