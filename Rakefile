@@ -49,10 +49,5 @@ task :version do
   puts VERSION
 end
 
-desc "Upload rdoc to injekt.net"
-task :upload => [:clean, :rdoc] do
-  sh("scp -r rdoc/* injekt@injekt.net:/var/www/injekt.net/rdoc/irc-socket")
-end
-
 task :default => [:spec]
 
