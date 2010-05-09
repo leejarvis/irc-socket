@@ -1,6 +1,6 @@
 spec = Gem::Specification.new do |s|
   s.name = 'irc-socket'
-  s.version = '0.9.3'
+  s.version = '0.9.4'
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = true
   s.extra_rdoc_files = ["README.rdoc"]
