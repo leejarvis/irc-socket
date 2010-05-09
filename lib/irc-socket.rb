@@ -161,7 +161,7 @@ class IRCSocket
 
   # Send JOIN command - Join a channel with given password
   def join(channel, password=nil)
-    write("JOIN #{channel}")
+    write_optional("JOIN #{channel}", password)
   end
 
   # Send PART command
