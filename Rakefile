@@ -2,7 +2,12 @@ require "rake"
 require "rake/clean"
 require "rake/gempackagetask"
 require "spec/rake/spectask"
-require "rake/rdoctask"
+
+begin
+  require 'hanna/rdoctask'
+rescue LoadError
+  require 'rake/rdoctask'
+end
 
 NAME = 'irc-socket'
 VERSION = '0.9.5'
