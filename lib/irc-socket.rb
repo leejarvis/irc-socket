@@ -53,8 +53,8 @@ class IRCSocket
   #  while data = irc.read
   #    puts data
   #  end
-  def self.open(server, port=6667)
-    irc = new(server, port)
+  def self.open(server, port=6667, ssl=false)
+    irc = new(server, port, ssl)
     irc.connect
     irc
   end
@@ -64,9 +64,10 @@ class IRCSocket
   #
   # NOTE: Using the block form does not mean the socket will send the applicable QUIT
   # command to leave the IRC server. You must send this yourself.
-  def initialize(server, port=6667)
+  def initialize(server, port=6667, ssl=false)
     @server = server
     @port = port
+    @ssl = ssl
 
     @socket = nil
     @connected = false
@@ -86,7 +87,19 @@ class IRCSocket
   # Connect to an IRC server, returns true on a successful connection, or
   # raises otherwise
   def connect
-    @socket = TCPSocket.new(server, port)
+    socket = TCPSocket.new(server, port)
+
+    if @ssl
+      require 'openssl'
+
+      ssl = OpenSSL::SSL::SSLContext.new
+      ssl.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      @socket = OpenSSL::SSL::SSLSocket.new(socket, ssl)
+      @socket.sync = true
+      @socket.connect
+    else
+      @socket = socket
+    end
   rescue Interrupt
     raise
   rescue Exception
