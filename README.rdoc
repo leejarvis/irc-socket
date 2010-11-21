@@ -1,39 +1,35 @@
 == Description
 
-IRCSocket is an IRC wrapper around a TCPSocket. It implements all of the major 
+IRCSocket is an IRC wrapper around a TCPSocket. It implements all of the major
 commands laid out in {RFC 2812}[http://irchelp.org/irchelp/rfc/rfc2812.txt].
 All these commands are available as instance methods of an IRCSocket Object.
 
 API documentation is available {here}[http://rdoc.injekt.net/irc-socket]
 
 == Example
- irc = IRCSocket.new('irc.freenode.org')
- irc.connect
+  irc = IRCSocket.new('irc.freenode.org')
+  irc.connect
 
- if irc.connected?
-   irc.nick "HulkHogan"
-   irc.user "Hulk", 0, "*", "I am Hulk Hogan"
+  if irc.connected?
+    irc.nick "HulkHogan"
+    irc.user "Hulk", 0, "*", "I am Hulk Hogan"
 
-   while line = irc.read
-        
-     # Join a channel after MOTD
-     if line.split[1] == '376'
-       irc.join "#mychannel"
-     end
+    while line = irc.read
 
-     puts "Received: #{line}"
-   end
- end
+      # Join a channel after MOTD
+      if line.split[1] == '376'
+        irc.join "#mychannel"
+      end
+
+      puts "Received: #{line}"
+    end
+  end
 
 == Installation
- gem install irc-socket
+  gem install irc-socket
 
 Or alternatively you can clone the Github repository
- git clone https://github.com/injekt/irc-socket
-
-
-== Author
-* Lee Jarvis - ljjarvis@gmail.com
+  git clone https://github.com/injekt/irc-socket
 
 == Notes
-I may have missed something in the RFC. Patches welcome.  
+I may have missed something in the RFC. Patches welcome.
