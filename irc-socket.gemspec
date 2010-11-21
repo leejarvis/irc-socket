@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'irc-socket'
-  s.version = '1.0.0'
+  s.version = '1.0.1'
   s.summary = "An IRC wrapper around TCPSocket"
   s.description = s.summary
   s.author = "Lee Jarvis"
