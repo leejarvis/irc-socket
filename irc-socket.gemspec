@@ -1,9 +1,9 @@
 Gem::Specification.new do |s|
   s.name = 'irc-socket'
-  s.version = '1.0.1'
+  s.version = '1.0.2'
   s.summary = "An IRC wrapper around TCPSocket"
   s.description = s.summary
-  s.author = "Lee Jarvis"
+  s.author = ["Lee Jarvis", "James Pozdena"]
   s.email = "lee@jarvis.co"
   s.homepage = "http://rubydoc.info/github/injekt/irc-socket"
   s.required_ruby_version = ">= 1.8.6"
