@@ -136,6 +136,7 @@ class IRCSocket
 
   # More sugar
   def write_optional(command, *optional) # :nodoc:
+    optional.compact!
     command = "#{command} #{optional.join(' ')}" if optional
     write(command.strip)
   end
